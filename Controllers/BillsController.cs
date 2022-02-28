@@ -31,6 +31,7 @@ namespace ApiNetCoreMonoLegal.Controllers
             var _id = value._id;
             var bill = _billService.Get(_id);
             var status = bill.Estado;
+            var to = bill.email;
             var response = bill;
 
             switch(status)
@@ -44,7 +45,6 @@ namespace ApiNetCoreMonoLegal.Controllers
                     var text = "Se le informa que su deuda pasará" +
                         " a estado de mora si no cancela su respectivo valor de $"
                         + TotalFactura;
-                    var to = "quesadadiaz18@gmail.com";
                     _emailService.SendEmail(text, to);
 
                     response = bill;
@@ -59,8 +59,7 @@ namespace ApiNetCoreMonoLegal.Controllers
                     var text2 = "Se le informa que su deuda pasará" +
                         " a estado de mora si no cancela su respectivo valor de $"
                         + TotalFactura2;
-                    var to2 = "quesadadiaz18@gmail.com";
-                    _emailService.SendEmail(text2, to2);
+                    _emailService.SendEmail(text2, to);
 
                     response = bill;
                     break;
